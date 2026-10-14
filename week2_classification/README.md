@@ -58,9 +58,32 @@ python day2_transfer_learning.py --backbone efficientnet_b0 --epochs 15
 
 ---
 
-### Day 3: Custom Dataset Pipeline _(coming next)_
-- Pick a Kaggle image-classification dataset
-- Build `Dataset`, `DataLoader`, and transforms from scratch
+### Day 3: Custom Dataset Pipeline
+- Pick a custom dataset (Intel Image Classification — 6 classes, ~25k images)
+- Build the full data pipeline: `Dataset`, `DataLoader`, transforms
+- Analyse class distribution, compute dataset mean/std
+- Visualise sample batches (sanity check before training)
+- Plug into Day 2's transfer-learning code and compare both strategies
+
+**Materials:**
+- [PyTorch — Datasets & DataLoaders](https://pytorch.org/tutorials/beginner/basics/data_tutorial.html)
+- [Intel Image Classification (Kaggle)](https://www.kaggle.com/datasets/puneet6060/intel-image-classification)
+
+**Files:** [`day3_custom_dataset.py`](day3_custom_dataset/day3_custom_dataset.py) · [`notes.md`](day3_custom_dataset/notes.md)
+
+**Run:**
+```bash
+cd day3_custom_dataset
+
+# Explore dataset only (no training)
+python day3_custom_dataset.py --explore-only
+
+# Full run: explore + train both strategies (10 epochs)
+python day3_custom_dataset.py --epochs 10 --no-wandb
+
+# Try a different backbone
+python day3_custom_dataset.py --backbone efficientnet_b0 --epochs 10
+```
 
 ---
 
@@ -91,7 +114,11 @@ week2_classification/
 │   ├── day2_transfer_learning.py           ← Feature extract vs fine-tune
 │   └── notes.md
 │
-├── day3_custom_dataset/                    ← Coming: Day 3
+├── day3_custom_dataset/
+│   ├── day3_custom_dataset.py              ← Custom dataset pipeline + training
+│   ├── Week2_Day3_Colab.ipynb              ← Colab notebook (Google Drive)
+│   └── notes.md
+│
 ├── day4_augmentation/                      ← Coming: Day 4
 ├── day5_ablation/                          ← Coming: Day 5
 │
