@@ -87,9 +87,33 @@ python day3_custom_dataset.py --backbone efficientnet_b0 --epochs 10
 
 ---
 
-### Day 4: Data Augmentation with Albumentations _(coming next)_
-- Rotation, crop, flip, colour jitter
-- Establish a no-augmentation baseline first
+### Day 4: Data Augmentation with Albumentations
+- Switch from torchvision transforms to **Albumentations** (faster, more flexible, detection-ready)
+- Establish a **no-augmentation baseline** first
+- Build 5 incremental pipelines: baseline → spatial → color → advanced → full
+- Run a **controlled ablation study** — same backbone, same LR, same epochs, same split
+- Visualise augmented samples (sanity check!)
+- Build the augmentation **ablation table**
+
+**Materials:**
+- [Albumentations — Documentation](https://albumentations.ai/docs/)
+- [Albumentations — PyTorch examples](https://albumentations.ai/docs/examples/pytorch_classification/)
+
+**Files:** [`day4_augmentation.py`](day4_augmentation/day4_augmentation.py) · [`Week2_Day4_Colab.ipynb`](day4_augmentation/Week2_Day4_Colab.ipynb) · [`notes.md`](day4_augmentation/notes.md)
+
+**Run:**
+```bash
+cd day4_augmentation
+
+# Explore augmentations visually (no training)
+python day4_augmentation.py --explore-only
+
+# Full ablation (5 experiments × 10 epochs each)
+python day4_augmentation.py --epochs 10 --no-wandb
+
+# Try with a different backbone
+python day4_augmentation.py --backbone efficientnet_b0 --epochs 10
+```
 
 ---
 
@@ -108,10 +132,12 @@ week2_classification/
 │
 ├── day1_modern_architectures/
 │   ├── day1_modern_architectures.py        ← Architecture explorer
+│   ├── Week2_Day1_Colab.ipynb              ← Colab notebook (Google Drive)
 │   └── notes.md
 │
 ├── day2_transfer_learning/
 │   ├── day2_transfer_learning.py           ← Feature extract vs fine-tune
+│   ├── Week2_Day2_Colab.ipynb              ← Colab notebook (Google Drive)
 │   └── notes.md
 │
 ├── day3_custom_dataset/
@@ -119,7 +145,11 @@ week2_classification/
 │   ├── Week2_Day3_Colab.ipynb              ← Colab notebook (Google Drive)
 │   └── notes.md
 │
-├── day4_augmentation/                      ← Coming: Day 4
+├── day4_augmentation/
+│   ├── day4_augmentation.py                ← Augmentation ablation study
+│   ├── Week2_Day4_Colab.ipynb              ← Colab notebook (Google Drive)
+│   └── notes.md
+│
 ├── day5_ablation/                          ← Coming: Day 5
 │
 ├── models/                                 ← Saved checkpoints
